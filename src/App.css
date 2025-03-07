@@ -53,3 +53,13 @@
   align-items: center;
   justify-content: center;
 }
+
+/* Fix for search buttons and inputs */
+.rounded-full input {
+  flex: 1;
+  min-width: 0; /* This helps with text overflow */
+}
+
+.rounded-full button {
+  flex-shrink: 0; /* Prevent the button from shrinking */
+}

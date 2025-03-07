@@ -70,9 +70,11 @@ const Hero = () => {
                     placeholder="Search destinations, treks, homestays..." 
                     className="w-full bg-transparent py-3 px-4 outline-none text-gray-800 dark:text-white"
                   />
-                  <button className="bg-offbeats-600 hover:bg-offbeats-700 transition-colors text-white rounded-full px-6 py-3 mr-1">
+                  <Button 
+                    className="bg-offbeats-600 hover:bg-offbeats-700 transition-colors text-white rounded-full py-2 px-6 mr-1"
+                  >
                     Search
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
