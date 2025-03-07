@@ -17,7 +17,7 @@ const DestinationGrid = ({ destinations, className }: DestinationGridProps) => {
         <AnimatedSection 
           key={destination.id} 
           variant="fade-up"
-          delay={getStaggeredDelay(index)}
+          delay={getStaggeredDelay(index) as number}
         >
           <DestinationCard destination={destination} />
         </AnimatedSection>
