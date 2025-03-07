@@ -58,8 +58,17 @@
 .rounded-full input {
   flex: 1;
   min-width: 0; /* This helps with text overflow */
+  width: 0; /* Force the input to shrink */
 }
 
 .rounded-full button {
   flex-shrink: 0; /* Prevent the button from shrinking */
+  white-space: nowrap; /* Prevent text wrapping in the button */
+}
+
+/* Additional fix for search container */
+.rounded-full {
+  display: flex;
+  align-items: center;
+  overflow: hidden; /* Ensure content stays within rounded corners */
 }

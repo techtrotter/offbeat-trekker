@@ -64,17 +64,19 @@ const Hero = () => {
             <div className="max-w-2xl mx-auto relative">
               <div className="relative rounded-full overflow-hidden bg-white/10 backdrop-blur-lg p-1.5">
                 <div className="flex items-center bg-white dark:bg-gray-900 rounded-full">
-                  <Search className="h-5 w-5 text-gray-400 ml-4" />
+                  <Search className="h-5 w-5 text-gray-400 ml-4 flex-shrink-0" />
                   <input 
                     type="text" 
                     placeholder="Search destinations, treks, homestays..." 
                     className="w-full bg-transparent py-3 px-4 outline-none text-gray-800 dark:text-white"
                   />
-                  <Button 
-                    className="bg-offbeats-600 hover:bg-offbeats-700 transition-colors text-white rounded-full py-2 px-6 mr-1"
-                  >
-                    Search
-                  </Button>
+                  <div className="pr-1 flex-shrink-0">
+                    <Button 
+                      className="bg-offbeats-600 hover:bg-offbeats-700 transition-colors text-white rounded-full py-2 px-6"
+                    >
+                      Search
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
