@@ -31,18 +31,20 @@ const BottomNavigation = () => {
   ];
 
   return (
-    <nav className="android-bottom-nav">
+    <nav className="android-bottom-nav android-elevation-2">
       {navItems.map((item) => (
         <Link 
           key={item.path}
           to={item.path}
           className={cn(
-            'android-bottom-nav-item android-ripple',
-            location.pathname === item.path ? 'active' : ''
+            'android-bottom-nav-item android-ripple flex flex-col items-center justify-center w-full h-full py-2',
+            location.pathname === item.path 
+              ? 'text-offbeats-600 dark:text-offbeats-400' 
+              : 'text-gray-600 dark:text-gray-400'
           )}
         >
           {item.icon}
-          <span>{item.label}</span>
+          <span className="text-xs mt-1">{item.label}</span>
         </Link>
       ))}
     </nav>

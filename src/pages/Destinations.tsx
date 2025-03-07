@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Filter, SlidersHorizontal, Search, Plus } from 'lucide-react';
@@ -52,12 +53,14 @@ const Destinations = () => {
   };
   
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
-      <div className="android-toolbar">
-        <h1 className="text-xl font-medium">Explore Destinations</h1>
+    <div className="android-app-container bg-white dark:bg-gray-950">
+      <div className="android-status-bar" />
+      
+      <div className="android-toolbar android-elevation-1">
+        <h1 className="text-xl font-medium ml-2">Explore Destinations</h1>
       </div>
       
-      <main className="android-content pb-20">
+      <main className="android-content flex-1 overflow-y-auto pb-20">
         <section className="relative h-40 mb-6">
           <div className="absolute inset-0">
             <img 
@@ -81,7 +84,7 @@ const Destinations = () => {
         
         <div className="px-4">
           <AnimatedSection variant="fade-up">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-3 mb-6">
+            <div className="android-material-card p-3 mb-6">
               <div className="flex gap-2">
                 <div className="relative flex-grow">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -153,7 +156,7 @@ const Destinations = () => {
         </div>
       </main>
       
-      <div className="android-fab">
+      <div className="android-fab android-elevation-2 bg-offbeats-600 text-white fixed right-4 bottom-20">
         <Plus className="h-6 w-6" />
       </div>
       

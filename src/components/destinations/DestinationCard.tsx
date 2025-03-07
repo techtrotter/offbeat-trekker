@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -57,7 +58,7 @@ const DestinationCard = ({ destination, className, featured = false }: Destinati
     <Link to={`/destination/${id}`}>
       <div 
         className={cn(
-          'android-card android-ripple group h-full flex flex-col mb-3',
+          'android-material-card android-ripple group h-full flex flex-col mb-3',
           featured ? 'sm:flex-row' : '',
           className
         )}
@@ -67,7 +68,7 @@ const DestinationCard = ({ destination, className, featured = false }: Destinati
             <img 
               src={imageUrl} 
               alt={title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
           </div>
           <div className="absolute top-2 left-2 bg-white/90 dark:bg-gray-800/90 rounded-full px-2 py-0.5 text-xs font-medium flex items-center">
@@ -79,7 +80,7 @@ const DestinationCard = ({ destination, className, featured = false }: Destinati
               {difficulty}
             </div>
           )}
-          <div className="absolute bottom-2 right-2 bg-yellow-500 rounded-full px-2 py-0.5 text-xs font-bold flex items-center text-white">
+          <div className="absolute bottom-2 right-2 bg-offbeats-600 rounded-full px-2 py-0.5 text-xs font-bold flex items-center text-white">
             <Star className="fill-current h-3 w-3 mr-0.5" />
             {rating}
           </div>
