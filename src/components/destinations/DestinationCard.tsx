@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -58,85 +57,64 @@ const DestinationCard = ({ destination, className, featured = false }: Destinati
     <Link to={`/destination/${id}`}>
       <div 
         className={cn(
-          'group rounded-2xl overflow-hidden bg-white dark:bg-gray-900 shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col',
+          'android-card android-ripple group h-full flex flex-col mb-3',
           featured ? 'sm:flex-row' : '',
           className
         )}
       >
         <div className={cn('relative overflow-hidden', featured ? 'sm:w-1/2' : '')}>
-          <div className="aspect-[4/3] overflow-hidden">
+          <div className="aspect-video overflow-hidden">
             <img 
               src={imageUrl} 
               alt={title}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
           </div>
-          <div className="absolute top-3 left-3 bg-white dark:bg-gray-800 rounded-full px-3 py-1 text-xs font-medium flex items-center">
+          <div className="absolute top-2 left-2 bg-white/90 dark:bg-gray-800/90 rounded-full px-2 py-0.5 text-xs font-medium flex items-center">
             {getCategoryIcon(category)}
             <span className="ml-1 capitalize">{category}</span>
           </div>
           {difficulty && (
-            <div className="absolute top-3 right-3 bg-white dark:bg-gray-800 rounded-full px-3 py-1 text-xs font-medium">
+            <div className="absolute top-2 right-2 bg-white/90 dark:bg-gray-800/90 rounded-full px-2 py-0.5 text-xs font-medium">
               {difficulty}
             </div>
           )}
+          <div className="absolute bottom-2 right-2 bg-yellow-500 rounded-full px-2 py-0.5 text-xs font-bold flex items-center text-white">
+            <Star className="fill-current h-3 w-3 mr-0.5" />
+            {rating}
+          </div>
         </div>
         
-        <div className={cn('p-4 flex flex-col flex-grow', featured ? 'sm:w-1/2 sm:p-6' : '')}>
-          <div className="flex justify-between items-start mb-2">
-            <h3 className={cn('font-bold text-gray-900 dark:text-white group-hover:text-offbeats-700 dark:group-hover:text-offbeats-400 transition-colors', 
-              featured ? 'text-xl' : 'text-lg'
-            )}>
-              {title}
-            </h3>
-            <div className="flex items-center text-yellow-500">
-              <Star className="fill-current h-4 w-4" />
-              <span className="ml-1 text-sm font-medium">{rating}</span>
-            </div>
-          </div>
+        <div className={cn('p-3 flex flex-col flex-grow', featured ? 'sm:w-1/2 sm:p-4' : '')}>
+          <h3 className={cn('font-bold text-gray-900 dark:text-white group-hover:text-offbeats-700 dark:group-hover:text-offbeats-400 transition-colors', 
+            featured ? 'text-lg' : 'text-base'
+          )}>
+            {title}
+          </h3>
           
-          <div className="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-3">
-            <MapPin className="h-4 w-4 mr-1 text-offbeats-600" />
+          <div className="flex items-center text-xs text-gray-600 dark:text-gray-400 mt-1 mb-2">
+            <MapPin className="h-3 w-3 mr-1 text-offbeats-600" />
             <span>{location}</span>
           </div>
           
           {featured && (
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
               {destination.description}
             </p>
           )}
           
-          <div className="mt-auto">
+          <div className="mt-auto pt-2 border-t border-gray-100 dark:border-gray-800">
             <div className="flex justify-between items-center">
-              <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                <Calendar className="h-4 w-4 mr-1 text-offbeats-600" />
+              <div className="flex items-center text-xs text-gray-600 dark:text-gray-400">
+                <Calendar className="h-3 w-3 mr-1 text-offbeats-600" />
                 <span>{duration}</span>
               </div>
-              <p className="font-bold text-offbeats-700 dark:text-offbeats-400">
+              <p className="font-bold text-sm text-offbeats-700 dark:text-offbeats-400">
                 ₹{price}
                 <span className="text-xs text-gray-500 font-normal">
                   {category === 'homestay' || category === 'hotel' ? '/night' : ''}
                 </span>
               </p>
-            </div>
-            
-            <div className={cn(
-              'mt-3 pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-end',
-              featured ? 'sm:justify-between' : ''
-            )}>
-              {featured && (
-                <div className="hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  View Details
-                </div>
-              )}
-              <button 
-                className="flex items-center text-sm font-medium text-offbeats-700 dark:text-offbeats-400 group-hover:text-offbeats-800 dark:group-hover:text-offbeats-300"
-                aria-label="View details"
-              >
-                <span className="mr-1">Explore</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </button>
             </div>
           </div>
         </div>

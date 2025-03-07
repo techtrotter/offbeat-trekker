@@ -12,12 +12,12 @@ interface DestinationGridProps {
 
 const DestinationGrid = ({ destinations, className }: DestinationGridProps) => {
   return (
-    <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${className}`}>
+    <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ${className}`}>
       {destinations.map((destination, index) => (
         <AnimatedSection 
           key={destination.id} 
           variant="fade-up"
-          delay={getStaggeredDelay(index) as number}
+          delay={Number(getStaggeredDelay(index))}
         >
           <DestinationCard destination={destination} />
         </AnimatedSection>

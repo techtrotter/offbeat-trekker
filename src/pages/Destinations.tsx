@@ -1,9 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Filter, SlidersHorizontal, Search } from 'lucide-react';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
+import { Filter, SlidersHorizontal, Search, Plus } from 'lucide-react';
+import BottomNavigation from '@/components/layout/BottomNavigation';
 import DestinationGrid from '@/components/destinations/DestinationGrid';
 import { Button } from '@/components/ui/button';
 import { destinations, categories } from '@/utils/mockData';
@@ -16,7 +14,6 @@ const Destinations = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   
-  // Initialize filters from URL
   useEffect(() => {
     const category = searchParams.get('category');
     if (category) {
@@ -24,16 +21,13 @@ const Destinations = () => {
     }
   }, [searchParams]);
   
-  // Apply filters
   useEffect(() => {
     let result = [...destinations];
     
-    // Apply category filters
     if (activeFilters.length > 0) {
       result = result.filter(dest => activeFilters.includes(dest.category));
     }
     
-    // Apply search term
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
       result = result.filter(
@@ -59,11 +53,12 @@ const Destinations = () => {
   
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
-      <Navbar />
+      <div className="android-toolbar">
+        <h1 className="text-xl font-medium">Explore Destinations</h1>
+      </div>
       
-      <main className="pt-24 pb-20">
-        {/* Hero Section */}
-        <section className="relative h-64 md:h-96 mb-10">
+      <main className="android-content pb-20">
+        <section className="relative h-40 mb-6">
           <div className="absolute inset-0">
             <img 
               src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb" 
@@ -74,47 +69,41 @@ const Destinations = () => {
           </div>
           <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
             <AnimatedSection variant="fade-up">
-              <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              <h1 className="text-2xl md:text-4xl font-bold text-white mb-2">
                 Discover North Bengal
               </h1>
-              <p className="text-lg text-white/90 max-w-2xl">
-                Explore our curated selection of offbeat destinations, hidden gems, and breathtaking experiences.
+              <p className="text-sm text-white/90 max-w-2xl">
+                Explore offbeat destinations and hidden gems
               </p>
             </AnimatedSection>
           </div>
         </section>
         
-        <div className="container mx-auto px-4">
-          {/* Search & Filter Bar */}
+        <div className="px-4">
           <AnimatedSection variant="fade-up">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 mb-8">
-              <div className="flex flex-col md:flex-row gap-4">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-3 mb-6">
+              <div className="flex gap-2">
                 <div className="relative flex-grow">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                   <input
                     type="text"
                     placeholder="Search destinations..."
-                    className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-offbeats-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-offbeats-500 focus:border-transparent"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
                 <Button 
                   variant="outline" 
-                  className="md:w-auto flex items-center gap-2"
+                  className="md:w-auto flex items-center gap-2 android-ripple"
                   onClick={() => setShowFilters(!showFilters)}
                 >
                   <Filter className="h-4 w-4" />
-                  <span>Filters</span>
-                  <span className="bg-offbeats-100 text-offbeats-700 text-xs py-0.5 px-2 rounded-full">
-                    {activeFilters.length}
-                  </span>
                 </Button>
               </div>
               
-              {/* Filters */}
               {showFilters && (
-                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
                   <div className="flex items-center gap-2 mb-3">
                     <SlidersHorizontal className="h-4 w-4 text-gray-500" />
                     <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -126,10 +115,10 @@ const Destinations = () => {
                       <button
                         key={category.id}
                         onClick={() => toggleFilter(category.id)}
-                        className={`py-1.5 px-3 rounded-full text-sm transition-colors ${
+                        className={`py-1.5 px-3 rounded-full text-sm transition-colors android-ripple ${
                           activeFilters.includes(category.id)
                             ? 'bg-offbeats-600 text-white' 
-                            : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200'
                         }`}
                       >
                         {category.name}
@@ -141,19 +130,14 @@ const Destinations = () => {
             </div>
           </AnimatedSection>
           
-          {/* Results */}
           <AnimatedSection variant="fade-up" delay={0.2}>
-            <div className="mb-6 flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="mb-4 flex justify-between items-center">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                 {filteredDestinations.length} Destinations
               </h2>
-              <div className="text-sm text-gray-500 dark:text-gray-400">
-                Showing all results
-              </div>
             </div>
           </AnimatedSection>
           
-          {/* Destination Grid */}
           {filteredDestinations.length > 0 ? (
             <DestinationGrid destinations={filteredDestinations} />
           ) : (
@@ -169,7 +153,11 @@ const Destinations = () => {
         </div>
       </main>
       
-      <Footer />
+      <div className="android-fab">
+        <Plus className="h-6 w-6" />
+      </div>
+      
+      <BottomNavigation />
     </div>
   );
 };
